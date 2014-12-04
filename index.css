@@ -1,0 +1,76 @@
+div.glava{
+	text-align: center;
+	font-family: 'Molengo', sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+}
+div.profilna-slika{
+	background-image: url(slike/Doctor-128.png);
+	width: 128px;
+	height: 128px;
+	margin-left: auto;
+	margin-right: auto;
+}
+body{
+	background-color: #9dcfa1;
+}
+div.info{
+	font-family: 'Molengo', sans-serif;
+	height: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-right: 1px solid #9dcfa1;
+}
+div.info-last{
+	font-family: 'Molengo', sans-serif;
+	height: 100px;
+	margin-top: 20px;
+}
+div.info-text{
+	text-align: center;
+	font-family: 'Molengo', sans-serif;
+}
+div.info-st{
+	text-align: center;
+	font-size: 30px;
+	font-family: 'Oswald', sans-serif;
+	margin-top: 10px;
+}
+@media screen and (max-width: 768px){
+	div.vertical-offset{
+	margin-bottom: 20px;
+	}
+}
+button.levi-gumb{
+	float: left;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+button.desni-gumb{
+	float: right;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+div.slika{
+	width: 32px;
+	height: 32px;
+	margin-left: auto;
+	margin-right: auto;
+}
+div.slika-teza{background-image: url(slike/teza-32.png);}
+div.slika-visina{background-image: url(slike/visina-32.png);}
+div.slika-itm{background-image: url(slike/itm-32.png);}
+div.slika-temp{background-image: url(slike/temp-32.png);}
+div.slika-srce{background-image: url(slike/srcek-32.png);}
+div.slika-tlak{background-image: url(slike/tlak-32.png);}
+span.vnos{
+	width: 50%;
+}
+div.margin-center{
+	margin-right: auto;
+	margin-left: auto;
+}
+div.dodaj-profil{
+	/*height: 0px;
+	border-width: 0px;*/
+}
