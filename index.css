@@ -71,6 +71,22 @@ div.margin-center{
 	margin-left: auto;
 }
 div.dodaj-profil{
-	/*height: 0px;
-	border-width: 0px;*/
+	height: 0px;
+	border-width: 0px;
+}
+div.spremeni-profil{
+	height: 0px;
+	border-width: 0px;
+}
+div.dodaj-odmik{
+	margin-bottom: 15px;
+}
+div.odmik-dodaj{
+	margin-top: 15px;
+}
+div.glava-graf{
+	text-align: center;
+	font-family: 'Molengo', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
 }
