@@ -58,3 +58,7 @@ function kreirajEHRzaBolnika() {
 		});
 	}
 }
+function preusmeri () {
+	var EHRID = $("#EHRID").val();
+	
+}
