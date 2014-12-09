@@ -7,20 +7,21 @@
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link href='http://fonts.googleapis.com/css?family=Molengo&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<script src="uvod.js"></script>
 </head>
 <body>
 	<div class="row">
-		<div class="col-md-1"></div>
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 		<div class="col-md-10 page-header panel glava">
 			Izbira že kreiranega bolnika
 		</div>
-		<div class="col-md-1"></div>
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 	</div>
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 panel">
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
+		<div class="col-lg-10 col-md-10 col-sm-10 panel">
 			<div class="row dodaj-odmik">
-				<div class="col-md-4 glava">
+				<div class="col-lg-4 col-md-4 col-sm-4 glava">
 					<div class="profilna-slika"></div>
 			 		Klemen Šibal
 			 		<div>
@@ -29,7 +30,7 @@
 						</button>
 			 		</div>
 				</div>
-				<div class="col-md-4 glava">
+				<div class="col-lg-4 col-md-4 col-sm-4 glava">
 					<div class="profilna-slika"></div>
 			 		Dejan Lavbič
 			 		<div>
@@ -38,7 +39,7 @@
 						</button>
 			 		</div>
 				</div>
-				<div class="col-md-4 glava">
+				<div class="col-lg-4 col-md-4 col-sm-4 glava">
 					<div class="profilna-slika"></div>
 			 		Pujsa Pepa
 			 		<div>
@@ -49,11 +50,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 	</div>
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 panel ">
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
+		<div class="col-lg-10 col-md-10 col-sm-10 panel ">
 			<div class="glava">
 				Vstop z EHR ID
 			</div>
@@ -66,33 +67,37 @@
 				</button>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 	</div>
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 panel">
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
+		<div class="col-lg-10 col-md-10 col-sm-10 panel">
 			<div class="glava">
 				Kreiraj EHR zapis za novega bolnika
 			</div>
 			<div class="input-group margin-center dodaj-odmik">
 				<span class="input-group-addon vnos">Ime</span>
-				<input type="text" class="form-control" style="text-align:right" placeholder="Klemen">
+				<input type="text" class="form-control" style="text-align:right" id="kreirajIme" placeholder="Klemen">
 			</div>
 			<div class="input-group margin-center dodaj-odmik">
 				<span class="input-group-addon vnos">Priimek</span>
-				<input type="text" class="form-control" style="text-align:right" placeholder="Šibal">
+				<input type="text" class="form-control" id="kreirajPriimek" style="text-align:right" placeholder="Šibal">
 			</div>
 			<div class="input-group margin-center dodaj-odmik">
 				<span class="input-group-addon vnos">Datum rojstva</span>
-				<input type="text" class="form-control" style="text-align:right" placeholder="1994-3-2T20:20">
+				<input type="text" class="form-control" style="text-align:right" id="kreirajDatumRojstva" placeholder="1994-3-2T20:20">
 			</div>
 			<div style="text-align:center" class="dodaj-odmik">
-				<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+				<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="kreirajEHRzaBolnika()">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</button>
+
+			</div>
+			<div style="text-align:center" class="dodaj-odmik glava">
+				<span id="kreirajSporocilo" ></span>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 	</div>
 </body>
 </html>
