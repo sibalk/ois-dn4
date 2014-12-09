@@ -10,94 +10,96 @@
 	<script src="uvod.js"></script>
 </head>
 <body>
-	<div class="row">
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-		<div class="col-md-10 page-header panel glava">
-			Izbira že kreiranega bolnika
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-md-10 page-header panel glava">
+				Izbira že kreiranega bolnika
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
 		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-	</div>
-	<div class="row">
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-		<div class="col-lg-10 col-md-10 col-sm-10 panel">
-			<div class="row dodaj-odmik">
-				<div class="col-lg-4 col-md-4 col-sm-4 glava">
-					<div class="profilna-slika"></div>
-			 		Klemen Šibal
-			 		<div>
-			 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
-  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-						</button>
-			 		</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 glava">
-					<div class="profilna-slika"></div>
-			 		Dejan Lavbič
-			 		<div>
-			 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
-  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-						</button>
-			 		</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 glava">
-					<div class="profilna-slika"></div>
-			 		Pujsa Pepa
-			 		<div>
-			 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
-  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-						</button>
-			 		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10 panel">
+				<div class="row dodaj-odmik">
+					<div class="col-lg-4 col-md-4 col-sm-4 glava">
+						<div class="profilna-slika"></div>
+				 		Ata Smrk
+				 		<div>
+				 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="preusmeri1()">
+	  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+							</button>
+				 		</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 glava">
+						<div class="profilna-slika"></div>
+				 		Dejan Lavbič
+				 		<div>
+				 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="preusmeri2()">
+	  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+							</button>
+				 		</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 glava">
+						<div class="profilna-slika"></div>
+				 		Pujsa Pepa
+				 		<div>
+				 			<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="preusmeri3()">
+	  						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+							</button>
+				 		</div>
+					</div>
 				</div>
 			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
 		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-	</div>
-	<div class="row">
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-		<div class="col-lg-10 col-md-10 col-sm-10 panel ">
-			<div class="glava">
-				Vstop z EHR ID
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10 panel ">
+				<div class="glava">
+					Vstop z EHR ID
+				</div>
+				<div>
+					<input type="text" class="form-control input-mini" style="text-align:center" id="EHRID" placeholder="0755bfc0-6319-4a1a-92de-e69002085f41">
+				</div>
+				<div style="text-align:center" class="dodaj-odmik">
+					<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+						<span class="glyphicon glyphicon-ok" onclick="preusmeri()" aria-hidden="true"></span>
+					</button>
+				</div>
 			</div>
-			<div>
-				<input type="text" class="form-control input-mini" style="text-align:center" id="EHRID" placeholder="0755bfc0-6319-4a1a-92de-e69002085f41">
-			</div>
-			<div style="text-align:center" class="dodaj-odmik">
-				<button type="button" class="btn btn-default btn-success" aria-label="Left Align">
-					<span class="glyphicon glyphicon-ok" onclick="Preusmeri()" aria-hidden="true"></span>
-				</button>
-			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
 		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-	</div>
-	<div class="row">
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
-		<div class="col-lg-10 col-md-10 col-sm-10 panel">
-			<div class="glava">
-				Kreiraj EHR zapis za novega bolnika
-			</div>
-			<div class="input-group margin-center dodaj-odmik">
-				<span class="input-group-addon vnos">Ime</span>
-				<input type="text" class="form-control" style="text-align:right" id="kreirajIme" placeholder="Klemen">
-			</div>
-			<div class="input-group margin-center dodaj-odmik">
-				<span class="input-group-addon vnos">Priimek</span>
-				<input type="text" class="form-control" id="kreirajPriimek" style="text-align:right" placeholder="Šibal">
-			</div>
-			<div class="input-group margin-center dodaj-odmik">
-				<span class="input-group-addon vnos">Datum rojstva</span>
-				<input type="text" class="form-control" style="text-align:right" id="kreirajDatumRojstva" placeholder="1994-3-2T20:20">
-			</div>
-			<div style="text-align:center" class="dodaj-odmik">
-				<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="kreirajEHRzaBolnika()">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</button>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10 panel">
+				<div class="glava">
+					Kreiraj EHR zapis za novega bolnika
+				</div>
+				<div class="input-group margin-center dodaj-odmik">
+					<span class="input-group-addon vnos">Ime</span>
+					<input type="text" class="form-control" style="text-align:right" id="kreirajIme" placeholder="Klemen">
+				</div>
+				<div class="input-group margin-center dodaj-odmik">
+					<span class="input-group-addon vnos">Priimek</span>
+					<input type="text" class="form-control" id="kreirajPriimek" style="text-align:right" placeholder="Šibal">
+				</div>
+				<div class="input-group margin-center dodaj-odmik">
+					<span class="input-group-addon vnos">Datum rojstva</span>
+					<input type="text" class="form-control" style="text-align:right" id="kreirajDatumRojstva" placeholder="1994-3-2T20:20">
+				</div>
+				<div style="text-align:center" class="dodaj-odmik">
+					<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="kreirajEHRzaBolnika()">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
 
+				</div>
+				<div style="text-align:center" class="dodaj-odmik glava">
+					<span id="kreirajSporocilo" ></span>
+				</div>
 			</div>
-			<div style="text-align:center" class="dodaj-odmik glava">
-				<span id="kreirajSporocilo" ></span>
-			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
 		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1"></div>
 	</div>
 </body>
 </html>
