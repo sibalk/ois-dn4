@@ -5,6 +5,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="animacija.js"></script>
 	<script src="bolnik.js"></script>
+	<script src="grafUtrip.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link href='http://fonts.googleapis.com/css?family=Molengo&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -43,11 +45,11 @@
 
 					<div class="input-group margin-center odmik-dodaj dodaj-odmik">
 						<span class="input-group-addon vnos">Ime</span>
-						<input type="text" class="form-control" style="text-align:right" placeholder="Klemen">
+						<input type="text" class="form-control" style="text-align:right" placeholder="Janez">
 					</div>
 					<div class="input-group margin-center dodaj-odmik">
 						<span class="input-group-addon vnos">Priimek</span>
-						<input type="text" class="form-control" style="text-align:right" placeholder="Šibal">
+						<input type="text" class="form-control" style="text-align:right" placeholder="Kranjski">
 					</div>
 					<div class="input-group margin-center dodaj-odmik">
 						<span class="input-group-addon vnos">Datum rojstva</span>
@@ -73,7 +75,7 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Teža</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="70">
+										<input id="dodajTeza" type="text" class="form-control" style="text-align:right" placeholder="70">
 									</div>
 								</div>
 							</div>
@@ -81,7 +83,7 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Višina</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="170">
+										<input id="dodajVisina" type="text" class="form-control" style="text-align:right" placeholder="170">
 									</div>
 								</div>
 							</div>
@@ -91,7 +93,7 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Temperatura</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="37">
+										<input id="dodajTemp" type="text" class="form-control" style="text-align:right" placeholder="37">
 									</div>
 								</div>
 							</div>
@@ -99,7 +101,7 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Srčni utrip</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="70">
+										<input id="dodajUtrip" type="text" class="form-control" style="text-align:right" placeholder="70">
 									</div>
 								</div>
 							</div>
@@ -109,7 +111,7 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Krvni tlak(sistolični)</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="120">
+										<input id="dodajSis" type="text" class="form-control" style="text-align:right" placeholder="120">
 									</div>
 								</div>
 							</div>
@@ -117,16 +119,17 @@
 								<div>
 									<div class="input-group margin-center">
 										<span class="input-group-addon vnos">Krvni tlak(diastolični)</span>
-										<input type="text" class="form-control" style="text-align:right" placeholder="70">
+										<input id="dodajDia" type="text" class="form-control" style="text-align:right" placeholder="70">
 									</div>
 								</div>
 							</div>
 						</div>
 						<div style="text-align:center">
-							<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="ProfileAdd()">
+							<button type="button" class="btn btn-default btn-success" aria-label="Left Align" onclick="dodajMeritve(); ProfileAdd()">
 								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 							</button>
 						</div>
+						<div class="sporocila" id="dodajSporocilo"></div>
 					</div>
 				</div>
 			</div>
@@ -221,11 +224,15 @@
 							<div class="glava-graf">
 								SRČNI UTRIP
 							</div>
+							<div>
+								<svg id="visualisation" width="400" height="200"></svg>
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="glava-graf">
 								KRVNI TLAK
 							</div>
+							<div id="krneki"></div>
 						</div>
 					</div>
 				</div>

@@ -12,7 +12,8 @@ function openProfileAdd () {
 	$("#profileAdd").animate({
 		height: $("#profileAdd").get(0).scrollHeight
 	}, 1000, function(){
-		isProfileAddOpen=true
+		isProfileAddOpen=true;
+		//$("#profileAdd").removeAttr("style");
 	})
 }
 function ProfileAdd(){

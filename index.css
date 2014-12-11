@@ -4,6 +4,10 @@ div.glava{
 	font-size: 30px;
 	font-weight: 700;
 }
+div.sporocila{
+	text-align: center;
+	font-family: 'Molengo', sans-serif;
+}
 div.profilna-slika{
 	background-image: url(slike/Doctor-128.png);
 	width: 128px;
@@ -89,4 +93,19 @@ div.glava-graf{
 	font-family: 'Molengo', sans-serif;
 	font-size: 20px;
 	font-weight: 600;
+}
+.axis path, .axis line{
+	fill: none;
+	stroke: #777;
+	shape-rendering: crispEdges;
+}
+.axis text{
+	font-family: 'Arial';
+	font-size: 13px;
+}
+.tick{
+	stroke-dasharray: 1, 2;
+}
+.bar{
+	fill: FireBrick;
 }
