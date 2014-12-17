@@ -219,6 +219,21 @@ function grafZaTemp() {
 	    }
 	});	
 }
+function grafZaTlak() {
+	sessionId = getSessionId();	
+	$.ajax({
+	    url: baseUrl + "/view/" + EHRIDUser + "/" + "blood_pressure",
+	    type: 'GET',
+	    headers: {"Ehr-Session": sessionId},
+	    success: function (res) {
+			grafSis(res);
+			grafDia(res);
+	    },
+	    error: function() {
+			console.log(JSON.parse(err.responseText).userMessage);
+	    }
+	});	
+}
 
 function grafZaPuls () {
 	sessionId = getSessionId();	
@@ -255,6 +270,7 @@ $(document).ready(function() {
 	grafZaVisino();
 	grafZaTemp();
 	grafZaPuls();
+	grafZaTlak();
 	
 
 	$.ajax({
