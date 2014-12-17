@@ -1,10 +1,10 @@
-var lineData
-var lineFunction
+var lineDataUtrip
+var lineFunctionUtrip
 function grafUtrip(rowData) {
 
-  lineData = [];
+  lineDataUtrip = [];
   for(var i=0; i<rowData.length; i++){
-    lineData.push({'x':i, 'y':rowData[i].Rate_magnitude});
+    lineDataUtrip.push({'x':i, 'y':rowData[i].Rate_magnitude});
   }
   var vis = d3.select("#narisiGrafUtrip"),
     WIDTH = $("#graf-utrip").width(),
@@ -15,10 +15,10 @@ function grafUtrip(rowData) {
       bottom: 20,
       left: 50
     },
-    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineData, function (d) {
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineDataUtrip, function (d) {
         return d.x;
       }),
-      d3.max(lineData, function (d) {
+      d3.max(lineDataUtrip, function (d) {
         return d.x;
       })
     ]),
@@ -38,7 +38,7 @@ function grafUtrip(rowData) {
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
 
-  lineFunction = d3.svg.line()
+  lineFunctionUtrip = d3.svg.line()
   .x(function (d) {
     return xRange(d.x);
   })
@@ -53,21 +53,21 @@ vis.append("svg:path")
   .attr("fill", "none")
   .transition()
   .duration(1000)
-  .attrTween("d", getInterpolation);
+  .attrTween("d", getInterpolationUtrip);
 
-  for(var i=0; i<lineData.length; i++){
+  for(var i=0; i<lineDataUtrip.length; i++){
     vis.append("rect")
       .attr("width", 1)
       .attr("height", HEIGHT-20)
       .attr("y", 0)
-      .attr("x", xRange(lineData[i].x))
+      .attr("x", xRange(lineDataUtrip[i].x))
       .attr("fill","grey")
       .attr("opacity", 0.5)
     vis.append("circle")
-      .attr("cx",xRange(lineData[i].x))
-      .attr("cy",yRange(lineData[i].y))
+      .attr("cx",xRange(lineDataUtrip[i].x))
+      .attr("cy",yRange(lineDataUtrip[i].y))
       .attr("r",0)
-      .attr("value", lineData[i].y)
+      .attr("value", lineDataUtrip[i].y)
       .attr("opacity", 1)
       .attr("fill", "#9dcfa1")
       .attr("stroke", "#FD9720")
@@ -108,14 +108,14 @@ vis.append("svg:path")
     .attr("y",HEIGHT-20)
 
 }
-function getInterpolation() {
+function getInterpolationUtrip() {
 
-  var interpolate = d3.scale.quantile()
+  var interpolateUtrip = d3.scale.quantile()
   .domain([0,1])
-  .range(d3.range(1, lineData.length + 1));
+  .range(d3.range(1, lineDataUtrip.length + 1));
 
   return function(t) {
-    var interpolatedLine = lineData.slice(0, interpolate(t));
-    return lineFunction(interpolatedLine);
+    var interpolatedLine = lineDataUtrip.slice(0, interpolateUtrip(t));
+    return lineFunctionUtrip(interpolatedLine);
   }
 }

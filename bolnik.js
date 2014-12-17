@@ -184,18 +184,35 @@ function grafZaTezo() {
 	    type: 'GET',
 	    headers: {"Ehr-Session": sessionId},
 	    success: function (res) {
-	    	/*
-	    	if (res.length > 0) {
-		        for (var i in res) {
-		            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].weight + " " 	+ res[i].unit + "</td>";
-		        }
-		        results += "</table>";
-		        $("#rezultatMeritveVitalnihZnakov").append(results);
-	    	} else {
-	    		$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
-	    	}*/
-	    	//console.log(res);
 	    	grafTeza(res);
+	    },
+	    error: function() {
+			console.log(JSON.parse(err.responseText).userMessage);
+	    }
+	});	
+}
+function grafZaVisino() {
+	sessionId = getSessionId();	
+	$.ajax({
+	    url: baseUrl + "/view/" + EHRIDUser + "/" + "height",
+	    type: 'GET',
+	    headers: {"Ehr-Session": sessionId},
+	    success: function (res) {
+	    	grafVisina(res);
+	    },
+	    error: function() {
+			console.log(JSON.parse(err.responseText).userMessage);
+	    }
+	});	
+}
+function grafZaTemp() {
+	sessionId = getSessionId();	
+	$.ajax({
+	    url: baseUrl + "/view/" + EHRIDUser + "/" + "body_temperature",
+	    type: 'GET',
+	    headers: {"Ehr-Session": sessionId},
+	    success: function (res) {
+	    	grafTemp(res);
 	    },
 	    error: function() {
 			console.log(JSON.parse(err.responseText).userMessage);
@@ -235,6 +252,8 @@ $(document).ready(function() {
 	//console.log(EHRIDUser);
 	sessionId = getSessionId();	
 	grafZaTezo();
+	grafZaVisino();
+	grafZaTemp();
 	grafZaPuls();
 	
 

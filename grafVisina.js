@@ -1,13 +1,13 @@
-var lineDataTeza
-var lineFunctionTeza
-function grafTeza(rowData) {
+var lineDataVisina
+var lineFunctionVisina
+function grafVisina(rowData) {
 
-  lineDataTeza = [];
+  lineDataVisina = [];
   for(var i=0; i<rowData.length; i++){
-    lineDataTeza.push({'x':i, 'y':rowData[i].weight});
+    lineDataVisina.push({'x':i, 'y':rowData[i].height});
   }
-  var vis = d3.select("#narisiGrafTeza"),
-    WIDTH = $("#graf-teza").width(),
+  var vis = d3.select("#narisiGrafVisina"),
+    WIDTH = $("#graf-visina").width(),
     HEIGHT = 200,
     MARGINS = {
       top: 20,
@@ -15,15 +15,15 @@ function grafTeza(rowData) {
       bottom: 20,
       left: 50
     },
-    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineDataTeza, function (d) {
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineDataVisina, function (d) {
         return d.x;
       }),
-      d3.max(lineDataTeza, function (d) {
+      d3.max(lineDataVisina, function (d) {
         return d.x;
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 160]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 220]),
 
 
     yAxis = d3.svg.axis()
@@ -38,7 +38,7 @@ function grafTeza(rowData) {
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
 
-  lineFunctionTeza = d3.svg.line()
+  lineFunctionVisina = d3.svg.line()
   .x(function (d) {
     return xRange(d.x);
   })
@@ -53,21 +53,21 @@ vis.append("svg:path")
   .attr("fill", "none")
   .transition()
   .duration(1000)
-  .attrTween("d", getInterpolationTeza);
+  .attrTween("d", getInterpolationVisina);
 
-  for(var i=0; i<lineDataTeza.length; i++){
+  for(var i=0; i<lineDataVisina.length; i++){
     vis.append("rect")
       .attr("width", 1)
       .attr("height", HEIGHT-20)
       .attr("y", 0)
-      .attr("x", xRange(lineDataTeza[i].x))
+      .attr("x", xRange(lineDataVisina[i].x))
       .attr("fill","grey")
       .attr("opacity", 0.5)
     vis.append("circle")
-      .attr("cx",xRange(lineDataTeza[i].x))
-      .attr("cy",yRange(lineDataTeza[i].y))
+      .attr("cx",xRange(lineDataVisina[i].x))
+      .attr("cy",yRange(lineDataVisina[i].y))
       .attr("r",0)
-      .attr("value", lineDataTeza[i].y)
+      .attr("value", lineDataVisina[i].y)
       .attr("opacity", 1)
       .attr("fill", "#9dcfa1")
       .attr("stroke", "#FD9720")
@@ -108,14 +108,14 @@ vis.append("svg:path")
     .attr("y",HEIGHT-20)
 
 }
-function getInterpolationTeza() {
+function getInterpolationVisina() {
 
-  var interpolateTeza = d3.scale.quantile()
+  var interpolateVisina = d3.scale.quantile()
   .domain([0,1])
-  .range(d3.range(1, lineDataTeza.length + 1));
+  .range(d3.range(1, lineDataVisina.length + 1));
 
   return function(t) {
-    var interpolatedLine = lineDataTeza.slice(0, interpolateTeza(t));
-    return lineFunctionTeza(interpolatedLine);
+    var interpolatedLine = lineDataVisina.slice(0, interpolateVisina(t));
+    return lineFunctionVisina(interpolatedLine);
   }
 }

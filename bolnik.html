@@ -7,6 +7,8 @@
 	<script src="bolnik.js"></script>
 	<script src="grafUtrip.js"></script>
 	<script src="grafTeza.js"></script>
+	<script src="grafVisina.js"></script>
+	<script src="grafTemp.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -189,9 +191,12 @@
 								<svg id="narisiGrafTeza" width="400" height="200"></svg>
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6" id="graf-visina">
 							<div class="glava-graf">
 								VIŠINA
+							</div>
+							<div>
+								<svg id="narisiGrafVisina" width="400" height="200"></svg>
 							</div>
 						</div>
 					</div>
@@ -209,9 +214,12 @@
 								ITM
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6" id="graf-temp">
 							<div class="glava-graf">
 								TEMPERATURA
+							</div>
+							<div>
+								<svg id="narisiGrafTemp" width="400" height="200"></svg>
 							</div>
 						</div>
 					</div>
