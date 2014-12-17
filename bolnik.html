@@ -6,6 +6,7 @@
 	<script src="animacija.js"></script>
 	<script src="bolnik.js"></script>
 	<script src="grafUtrip.js"></script>
+	<script src="grafTeza.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -180,9 +181,12 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<div class="panel panel-default">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-6" id="graf-teza">
 							<div class="glava-graf">
 								TEŽA
+							</div>
+							<div>
+								<svg id="narisiGrafTeza" width="400" height="200"></svg>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -220,12 +224,12 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<div class="panel panel-default">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-6" id="graf-utrip">
 							<div class="glava-graf">
 								SRČNI UTRIP
 							</div>
 							<div>
-								<svg id="visualisation" width="400" height="200"></svg>
+								<svg id="narisiGrafUtrip" width="400" height="200"></svg>
 							</div>
 						</div>
 						<div class="col-md-6">

@@ -1,13 +1,13 @@
 var lineData
 var lineFunction
-function grafUtrip(rowData) {
+function grafTeza(rowData) {
 
   lineData = [];
   for(var i=0; i<rowData.length; i++){
-    lineData.push({'x':i, 'y':rowData[i].Rate_magnitude});
+    lineData.push({'x':i, 'y':rowData[i].weight});
   }
-  var vis = d3.select("#narisiGrafUtrip"),
-    WIDTH = $("#graf-utrip").width(),
+  var vis = d3.select("#narisiGrafTeza"),
+    WIDTH = $("#graf-teza").width(),
     HEIGHT = 200,
     MARGINS = {
       top: 20,
@@ -23,7 +23,7 @@ function grafUtrip(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([45, 120]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 160]),
 
 
     yAxis = d3.svg.axis()

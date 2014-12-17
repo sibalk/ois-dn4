@@ -177,6 +177,32 @@ function izpisZadnjeMerTlak () {
 		}
 	})
 }
+function grafZaTezo() {
+	sessionId = getSessionId();	
+	$.ajax({
+	    url: baseUrl + "/view/" + EHRIDUser + "/" + "weight",
+	    type: 'GET',
+	    headers: {"Ehr-Session": sessionId},
+	    success: function (res) {
+	    	/*
+	    	if (res.length > 0) {
+		        for (var i in res) {
+		            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].weight + " " 	+ res[i].unit + "</td>";
+		        }
+		        results += "</table>";
+		        $("#rezultatMeritveVitalnihZnakov").append(results);
+	    	} else {
+	    		$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+	    	}*/
+	    	//console.log(res);
+	    	grafTeza(res);
+	    },
+	    error: function() {
+			console.log(JSON.parse(err.responseText).userMessage);
+	    }
+	});	
+}
+
 function grafZaPuls () {
 	sessionId = getSessionId();	
 
@@ -187,13 +213,13 @@ function grafZaPuls () {
 		type: 'GET',
 		headers: {"Ehr-Session": sessionId},
 		success: function (res) {
-			console.log(res.resultSet);	
+			//console.log(res.resultSet);	
 			var rows = res.resultSet;
 	        for (var i in rows) {
-	            console.log(rows[i].Rate_magnitude);
+	            //console.log(rows[i].Rate_magnitude);
 
 	        }
-	        InitChart(rows);
+	        grafUtrip(rows);
 	    },
 	    error: function(err) {
 	    	console.log(JSON.parse(err.responseText).userMessage);
@@ -201,14 +227,16 @@ function grafZaPuls () {
 	});
 }
 $(document).ready(function() {
-	//InitChart();
+
 	
 	var html = window.location.href;
 	var tab= html.split("=");
 	EHRIDUser = tab[1];
 	//console.log(EHRIDUser);
 	sessionId = getSessionId();	
+	grafZaTezo();
 	grafZaPuls();
+	
 
 	$.ajax({
 		url: baseUrl + "/demographics/ehr/" + EHRIDUser + "/party",
