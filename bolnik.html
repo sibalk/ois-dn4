@@ -11,6 +11,8 @@
 	<script src="grafTemp.js"></script>
 	<script src="grafSis.js"></script>
 	<script src="grafDia.js"></script>
+	<script src="qr.js"></script>
+	<script src="nasveti.json"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -23,16 +25,23 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				
 			 	<div class="panel panel-default glava">
-			 				<div class="profilna-slika" ></div>
+			 				<div class="profilna-slika" >
+			 					<img id="QRimage" style="opacity:0; height:0; width:0; ">
+			 				</div>
 			 				<div class="glava" id="vrednostIme">Klemen Šibal</div>
 			 				
 			 				<div class="row">
-			 					<div class="col-lg-6 col-md-6 col-sm-6">
+			 					<div class="col-lg-4 col-md-4 col-sm-4">
 			 						<button type="button" class="btn btn-default levi-gumb btn-success" onclick="ProfileEdit()" aria-label="Left Align">
   										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 									</button>
 			 					</div>
-			 					<div class="col-lg-6 col-md-6 col-sm-6">
+			 					<div class="col-lg-4 col-md-4 col-sm-4">
+			 						<button type="button" class="btn btn-default margin-center btn-success" onclick="narisiQR()" aria-label="Center Align">
+  										<span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
+									</button>
+			 					</div>
+			 					<div class="col-lg-4 col-md-4 col-sm-4">
 			 						<button type="button" class="btn btn-default desni-gumb btn-success" onclick="ProfileAdd()" aria-label="Left Align">
   										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									</button>
@@ -50,18 +59,18 @@
 
 					<div class="input-group margin-center odmik-dodaj dodaj-odmik">
 						<span class="input-group-addon vnos">Ime</span>
-						<input type="text" class="form-control" style="text-align:right" placeholder="Janez">
+						<input id="urediIme" type="text" class="form-control" style="text-align:right" placeholder="Janez">
 					</div>
 					<div class="input-group margin-center dodaj-odmik">
 						<span class="input-group-addon vnos">Priimek</span>
-						<input type="text" class="form-control" style="text-align:right" placeholder="Kranjski">
+						<input id="UrediPriimek" type="text" class="form-control" style="text-align:right" placeholder="Kranjski">
 					</div>
 					<div class="input-group margin-center dodaj-odmik">
 						<span class="input-group-addon vnos">Datum rojstva</span>
-						<input type="text" class="form-control" style="text-align:right" placeholder="1994-3-2T20:20">
+						<input id="urediDOB" type="text" class="form-control" style="text-align:right" placeholder="1994-3-2T20:20">
 					</div>
 					<div style="text-align:center" class="dodaj-odmik">
-						<button type="button" class="btn btn-default btn-success" onclick="ProfileEdit()" aria-label="Left Align">
+						<button type="button" class="btn btn-default btn-success" onclick="ProfileEdit(); urediUporabnika()" aria-label="Left Align">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</button>
 					</div>
@@ -185,20 +194,20 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<div class="panel panel-default">
 					<div class="row">
-						<div class="col-md-6" id="graf-teza">
+						<div class="col-md-6" >
 							<div class="glava-graf">
 								TEŽA
 							</div>
-							<div>
-								<svg id="narisiGrafTeza" width="400" height="200"></svg>
+							<div id="graf-teza">
+								<svg id="narisiGrafTeza" height= "200"></svg>
 							</div>
 						</div>
-						<div class="col-md-6" id="graf-visina">
+						<div class="col-md-6" >
 							<div class="glava-graf">
 								VIŠINA
 							</div>
-							<div>
-								<svg id="narisiGrafVisina" width="400" height="200"></svg>
+							<div id="graf-visina">
+								<svg id="narisiGrafVisina" height="200"></svg>
 							</div>
 						</div>
 					</div>
@@ -216,12 +225,12 @@
 								ITM
 							</div>
 						</div>
-						<div class="col-md-6" id="graf-temp">
+						<div class="col-md-6">
 							<div class="glava-graf">
 								TEMPERATURA
 							</div>
-							<div>
-								<svg id="narisiGrafTemp" width="400" height="200"></svg>
+							<div id="graf-temp">
+								<svg id="narisiGrafTemp" height="200"></svg>
 							</div>
 						</div>
 					</div>
@@ -234,24 +243,33 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<div class="panel panel-default">
 					<div class="row">
-						<div class="col-md-6" id="graf-utrip">
+						<div class="col-md-6">
 							<div class="glava-graf">
 								SRČNI UTRIP
 							</div>
-							<div>
-								<svg id="narisiGrafUtrip" width="400" height="200"></svg>
+							<div id="graf-utrip">
+								<svg id="narisiGrafUtrip" height="200"></svg>
 							</div>
 						</div>
-						<div class="col-md-6" id="graf-tlak">
+						<div class="col-md-6">
 							<div class="glava-graf">
 								KRVNI TLAK
 							</div>
-							<div>
-								<svg id="narisiGrafTlak" width="400" height="200"></svg>
+							<div id="graf-tlak">
+								<svg id="narisiGrafTlak" height="200"></svg>
 							</div>
 							<div id="krneki"></div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<div id="nasvetiTekst" class="panel panel-default">
+					
 				</div>
 			</div>
 			<div class="col-lg-1 col-md-1 col-sm-1"></div>

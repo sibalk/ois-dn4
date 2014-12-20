@@ -7,7 +7,7 @@ function grafVisina(rowData) {
     lineDataVisina.push({'x':i, 'y':rowData[i].height});
   }
   var vis = d3.select("#narisiGrafVisina"),
-    WIDTH = $("#graf-visina").width(),
+    WIDTH = $("#graf-visina").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,

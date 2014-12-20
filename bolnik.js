@@ -17,11 +17,41 @@ function getSessionId() {
     });
     return response.responseJSON.sessionId;
 }
+function urediUporabnika(){
+	sessionID = getSessionId();
+	var imeU = $("#urediIme").val();
+	var priimekU = $("#urediPriimek").val();
+	var rojstvoU = $("#urediDOB").val();
+
+	var partyData = {
+		firstNames: imeU,
+		lastNames: priimekU,
+		dateOfBirth: rojstvoU,
+		partyAdditionalInfo: [
+			{
+				key: "ehrId",
+				value: EHRIDUser
+			}
+		]
+	};
+	$.ajax({
+		url: baseUrl + "/demographics/party/",
+		type: 'PUT',
+		contentType: 'application/json',
+		data: JSON.stringify(partyData),
+		headers: {"Ehr-Session": sessionId},
+		success: function (party) {
+			console.log(firstName+lastName+gender+dateOfBirth +"FIXED");
+		},error: function(error){
+			console.log(error);
+		}
+	});
+}
 function dodajMeritve() {
 	sessionId = getSessionId();
 	var time = new Date();
 	time = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+"T"+time.getHours()+":"+time.getMinutes();
-	console.log(time);
+	//console.log(time);
 	var visina = $("#dodajVisina").val();
 	var teza = $("#dodajTeza").val();
 	var temp = $("#dodajTemp").val();
@@ -234,6 +264,9 @@ function grafZaTlak() {
 	    }
 	});	
 }
+function narisiQR(){
+	getQR("http://sibalk.github.io/ois-dn4/bolnik.html?ehrid="+EHRIDUser);
+}
 
 function grafZaPuls () {
 	sessionId = getSessionId();	
@@ -258,6 +291,9 @@ function grafZaPuls () {
 	    }
 	});
 }
+function naloziNasvet(podatki){
+	$("#nasvetiTekst").append(podatki)
+}
 $(document).ready(function() {
 
 	
@@ -271,6 +307,14 @@ $(document).ready(function() {
 	grafZaTemp();
 	grafZaPuls();
 	grafZaTlak();
+	naloziNasvet(Nasveti.debelost);
+	naloziNasvet(Nasveti.podhranjenost);
+	naloziNasvet(Nasveti.vrocina);
+	naloziNasvet(Nasveti.podhladitev);
+	naloziNasvet(Nasveti.nizekUtrip);
+	naloziNasvet(Nasveti.visokUtrip);
+	naloziNasvet(Nasveti.nizekTlak);
+	naloziNasvet(Nasveti.visokTlak);
 	
 
 	$.ajax({

@@ -7,7 +7,7 @@ function grafTeza(rowData) {
     lineDataTeza.push({'x':i, 'y':rowData[i].weight});
   }
   var vis = d3.select("#narisiGrafTeza"),
-    WIDTH = $("#graf-teza").width(),
+    WIDTH = $("#graf-teza").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,

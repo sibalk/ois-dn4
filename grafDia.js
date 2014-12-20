@@ -7,7 +7,7 @@ function grafDia(rowData) {
     lineDataDia.push({'x':i, 'y':rowData[i].diastolic});
   }
   var vis = d3.select("#narisiGrafTlak"),
-    WIDTH = $("#graf-tlak").width(),
+    WIDTH = $("#graf-tlak").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,

@@ -7,7 +7,7 @@ function grafSis(rowData) {
     lineDataSis.push({'x':i, 'y':rowData[i].systolic});
   }
   var vis = d3.select("#narisiGrafTlak"),
-    WIDTH = $("#graf-tlak").width(),
+    WIDTH = $("#graf-tlak").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,

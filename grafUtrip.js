@@ -7,7 +7,7 @@ function grafUtrip(rowData) {
     lineDataUtrip.push({'x':i, 'y':rowData[i].Rate_magnitude});
   }
   var vis = d3.select("#narisiGrafUtrip"),
-    WIDTH = $("#graf-utrip").width(),
+    WIDTH = $("#graf-utrip").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,

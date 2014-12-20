@@ -7,7 +7,7 @@ function grafTemp(rowData) {
     lineDataTemp.push({'x':i, 'y':rowData[i].temperature});
   }
   var vis = d3.select("#narisiGrafTemp"),
-    WIDTH = $("#graf-temp").width(),
+    WIDTH = $("#graf-temp").width()-40,
     HEIGHT = 200,
     MARGINS = {
       top: 20,
