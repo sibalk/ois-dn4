@@ -5,6 +5,7 @@ var username = "ois.seminar";
 var password = "ois4fri";
 
 var EHRIDUser;
+var pacientId;
 var teza;
 var visina;
 
@@ -24,6 +25,7 @@ function urediUporabnika(){
 	var rojstvoU = $("#urediDOB").val();
 
 	var partyData = {
+		id: pacientId,
 		firstNames: imeU,
 		lastNames: priimekU,
 		dateOfBirth: rojstvoU,
@@ -85,12 +87,14 @@ function dodajMeritve() {
 	    contentType: 'application/json',
 	    data: JSON.stringify(podatki),
 	    success: function (res) {
-	    	console.log(res.meta.href);
+	    	//console.log(res.meta.href);
 	        $("#dodajSporocilo").text("Uspešen vnos podatkov");
+	        $("#nasvetiTekst").text("");
 	        izpisZadnjeMerTeza();
 			izpisZadnjeMerTemp();
 			izpisZadnjeMerUtrip();
 			izpisZadnjeMerTlak();
+
 	    },
 	    error: function(err) {
 	    	$("#dodajSporocilo").text("Neuspešen vnos podatkov");
@@ -107,6 +111,7 @@ function izpisZadnjeMerVisina () {
 			if(res.length > 0){
 				$("#vrednostVisina").text(res[0].height);
 				visina = res[0].height;
+				grafZaVisino();
 			}
 			else{
 				$("#vrednostVisina").text("/");
@@ -128,6 +133,7 @@ function izpisZadnjeMerTeza () {
 			if(res.length > 0){
 				$("#vrednostTeza").text(res[0].weight);
 				teza = res[0].weight;
+				grafZaTezo();
 			}
 			else{
 				$("#vrednostTeza").text("/");
@@ -144,6 +150,10 @@ function izpisZadnjeMerITM (){
 	if(teza && visina){
 		visina = visina/100;
 		$("#vrednostITM").text(Math.round((teza/(visina*visina))));
+		if((Math.round((teza/(visina*visina))))>= 25)
+			naloziNasvet(Nasveti.debelost);
+		else if((Math.round((teza/(visina*visina))))<= 18)
+			naloziNasvet(Nasveti.podhranjenost);
 	}
 	else
 		$("#vrednostITM").text("/");
@@ -156,6 +166,11 @@ function izpisZadnjeMerTemp () {
 		success: function (res){
 			if(res.length > 0){
 				$("#vrednostTemp").text(res[0].temperature);
+				grafZaTemp();
+				if(res[0].temperature >= 38)
+					naloziNasvet(Nasveti.vrocina);
+				else if(res[0].temperature <= 35)
+					naloziNasvet(Nasveti.podhladitev);
 			}
 			else{
 				$("#vrednostTemp").text("/");
@@ -174,6 +189,11 @@ function izpisZadnjeMerUtrip () {
 		success: function (res){
 			if(res.length > 0){
 				$("#vrednostUtrip").text(res[0].pulse);
+				grafZaPuls();
+				if(res[0].pulse < 60)
+					naloziNasvet(Nasveti.nizekUtrip);
+				else if(res[0].pulse > 100)
+					naloziNasvet(Nasveti.visokUtrip);
 			}
 			else{
 				$("#vrednostUtrip").text("/");
@@ -191,12 +211,28 @@ function izpisZadnjeMerTlak () {
 		headers: {"Ehr-Session": sessionId},
 		success: function (res){
 			if(res.length > 0){
-				if(res[0].diastolic && res[0].systolic)
-					$("#vrednostPritisk").text(res[0].systolic+"/"+res[0].diastolic);
-				else if(res[0].systolic)
-					$("#vrednostPritisk").text(res[0].systolic);
-				else
-					$("#vrednostPritisk").text(res[0].diastolic);
+				if(res[0].diastolic && res[0].systolic){
+					$("#vrednostPritisk").text(res[0].systolic+"/"+res[0].diastolic);/*
+					if(res[0].diastolic < 60 || res[0].systolic < 90)
+						naloziNasvet(Nasveti.nizekTlak);
+					else if(res[0].diastolic 90 >  && res[0].systolic > 140)
+						naloziNasvet(Nasveti.visokTlak);*/
+				}
+				else if(res[0].systolic){
+					$("#vrednostPritisk").text(res[0].systolic);/*
+					if(res[0].systolic < 90)
+						naloziNasvet(Nasveti.nizekTlak);
+					else if(res[0].systolic > 140)
+						naloziNasvet(Nasveti.visokTlak);*/
+				}
+				else{
+					$("#vrednostPritisk").text(res[0].diastolic);/*
+					if(res[0].diastolic < 60)
+						naloziNasvet(Nasveti.nizekTlak);
+					else if(res[0].diastolic > 90)
+						naloziNasvet(Nasveti.visokTlak);*/
+				}
+				//grafZaTlak();
 			}
 			else{
 				$("#vrednostPritisk").text("/");
@@ -307,6 +343,7 @@ $(document).ready(function() {
 	grafZaTemp();
 	grafZaPuls();
 	grafZaTlak();
+	/*
 	naloziNasvet(Nasveti.debelost);
 	naloziNasvet(Nasveti.podhranjenost);
 	naloziNasvet(Nasveti.vrocina);
@@ -315,6 +352,8 @@ $(document).ready(function() {
 	naloziNasvet(Nasveti.visokUtrip);
 	naloziNasvet(Nasveti.nizekTlak);
 	naloziNasvet(Nasveti.visokTlak);
+	$("#nasvetiTekst").text("");*/
+
 	
 
 	$.ajax({
@@ -323,6 +362,7 @@ $(document).ready(function() {
 		headers: {"Ehr-Session": sessionId},
 		success: function (data) {
 			var party = data.party;
+			pacientId = data.party.id;
 			//console.log(party.firstNames);
 			$("#vrednostIme").text(party.firstNames + " "+ party.lastNames);
 			//console.log(party.weight)
