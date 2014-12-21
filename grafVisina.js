@@ -23,7 +23,7 @@ function grafVisina(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 240]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 260]),
 
 
     yAxis = d3.svg.axis()

@@ -23,7 +23,7 @@ function grafTemp(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 45]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 55]),
 
 
     yAxis = d3.svg.axis()

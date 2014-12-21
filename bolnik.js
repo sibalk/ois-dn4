@@ -60,7 +60,7 @@ function generirajMeritve(){
 	var sisTlak;
 	var diaTlak;
 	for(var i = 0; i < 50; i++){
-		console.log(i);
+		//console.log(i);
 		visina = Math.floor(Math.random() * (240 - 100 + 1)) + 100;
 		teza = Math.floor(Math.random() * (180 - 40 + 1)) + 40;
 		temp = Math.floor(Math.random() * (45 - 15 + 1)) + 15;
@@ -394,6 +394,156 @@ function grafZaPuls () {
 }
 function naloziNasvet(podatki){
 	$("#nasvetiTekst").append(podatki)
+}
+function izpisiVitalneZnake(){
+	sessionId = getSessionId();
+	var tip = $("#preberiTipZaVitalneZnake").val();
+	if(tip == "teza"){
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "weight",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna teza</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].weight + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+	else if(tip == "visina"){
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "height",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna visina</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].height + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+	else if(tip == "temp"){
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "body_temperature",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Telesna temperatura</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].temperature + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+	else if(tip == "utrip"){
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "pulse",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Srcni utrip</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].pulse + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+	else if(tip == "sistolicni"){
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "blood_pressure",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Krvni tlak(sistolični)</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].systolic + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+	else{
+		$.ajax({
+			url: baseUrl + "/view/" + EHRIDUser + "/" + "blood_pressure",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+			success: function (res) {
+				if (res.length > 0) {
+					var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>Krvni tlak(diastolični)</th></tr>";
+					for (var i in res) {
+					    results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].diastolic + " " 	+ res[i].unit + "</td>";
+					}
+					results += "</table>";
+					$("#rezultatMeritveVitalnihZnakov").append(results);
+				}
+				else{
+					$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+				}
+			},
+			error: function() {
+				$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+				console.log(JSON.parse(err.responseText).userMessage);
+			}
+		});
+	}
+
+	
 }
 $(document).ready(function() {
 

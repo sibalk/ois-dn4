@@ -26,7 +26,7 @@ function grafSis(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 180]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 200]),
 
 
     yAxis = d3.svg.axis()
