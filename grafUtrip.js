@@ -23,7 +23,7 @@ function grafUtrip(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([45, 120]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([45, 130]),
 
 
     yAxis = d3.svg.axis()
@@ -36,7 +36,7 @@ function grafUtrip(rowData) {
   vis.append("svg:g")
     .attr("class", "y axis")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
-    .call(yAxis);
+    //.call(yAxis);
 
   lineFunctionUtrip = d3.svg.line()
   .x(function (d) {
@@ -48,7 +48,7 @@ function grafUtrip(rowData) {
   .interpolate('cardinal');
 
 vis.append("svg:path")
-  .attr("stroke", "#FD9720")
+  .attr("stroke", "#5a7997")
   .attr("stroke-width", 2)
   .attr("fill", "none")
   .transition()
@@ -70,7 +70,7 @@ vis.append("svg:path")
       .attr("value", lineDataUtrip[i].y)
       .attr("opacity", 1)
       .attr("fill", "#9dcfa1")
-      .attr("stroke", "#FD9720")
+      .attr("stroke", "#5a7997")
       .attr("stroke-width", 2)
       .on("mouseenter", function(){
         d3.select(this)

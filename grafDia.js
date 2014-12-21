@@ -26,7 +26,7 @@ function grafDia(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 160]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 180]),
 
 
     yAxis = d3.svg.axis()
@@ -39,7 +39,7 @@ function grafDia(rowData) {
   vis.append("svg:g")
     .attr("class", "y axis")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
-    .call(yAxis);
+    //.call(yAxis);
 
   lineFunctionDia = d3.svg.line()
   .x(function (d) {
