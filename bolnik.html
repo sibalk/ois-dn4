@@ -8,6 +8,7 @@
 	<script src="grafUtrip.js"></script>
 	<script src="grafTeza.js"></script>
 	<script src="grafVisina.js"></script>
+	<script src="grafITM.js"></script>
 	<script src="grafTemp.js"></script>
 	<script src="grafSis.js"></script>
 	<script src="grafDia.js"></script>
@@ -28,7 +29,7 @@
 			 				<div class="profilna-slika" >
 			 					<img id="QRimage" style="opacity:0; height:0; width:0; ">
 			 				</div>
-			 				<div class="glava" id="vrednostIme">Klemen Šibal</div>
+			 				<div class="glava" id="vrednostIme">-nalaganje-</div>
 			 				
 			 				<div class="row">
 			 					<div class="col-lg-4 col-md-4 col-sm-4">
@@ -162,32 +163,32 @@
 						<div class="col-md-2 info">
 							<div class="slika-teza slika"></div>
 							<div class="info-text">Teža</div>
-							<div class="info-st" id="vrednostTeza">80</div>
+							<div class="info-st" id="vrednostTeza">/</div>
 						</div>
 						<div class="col-md-2 info vertical-offset">
 							<div class="slika-visina slika"></div>
 							<div class="info-text">Višina</div>
-							<div class="info-st" id="vrednostVisina">180</div>
+							<div class="info-st" id="vrednostVisina">/</div>
 						</div>
 						<div class="col-md-2 info vertical-offset">
 							<div class="slika-itm slika"></div>
 							<div class="info-text">ITM</div>
-							<div class="info-st" id="vrednostITM">22</div>
+							<div class="info-st" id="vrednostITM">/</div>
 						</div>
 						<div class="col-md-2 info vertical-offset">
 							<div class="slika-temp slika"></div>
 							<div class="info-text">Temperatura</div>
-							<div class="info-st" id="vrednostTemp">37</div>
+							<div class="info-st" id="vrednostTemp">/</div>
 						</div>
 						<div class="col-md-2 info vertical-offset">
 							<div class="slika-srce slika"></div>
 							<div class="info-text">Srčni utrip</div>
-							<div class="info-st" id="vrednostUtrip">80</div>
+							<div class="info-st" id="vrednostUtrip">/</div>
 						</div>
 						<div class="col-md-2 info-last">
 							<div class="slika-tlak slika"></div>
 							<div class="info-text">Krvni tlak</div>
-							<div class="info-st" id="vrednostPritisk">120/70</div>
+							<div class="info-st" id="vrednostPritisk">/</div>
 						</div>
 					</div>
 				</div>
@@ -228,6 +229,9 @@
 						<div class="col-md-6">
 							<div class="glava-graf">
 								ITM
+							</div>
+							<div id="graf-ITM" class="margin-center">
+								<svg id="narisiGrafITM" height="200"></svg>
 							</div>
 						</div>
 						<div class="col-md-6">

@@ -8,6 +8,7 @@ var EHRIDUser;
 var pacientId;
 var teza;
 var visina;
+var itm;
 
 function getSessionId() {
     var response = $.ajax({
@@ -210,7 +211,9 @@ function izpisZadnjeMerTeza () {
 function izpisZadnjeMerITM (){
 	if(teza && visina){
 		visina = visina/100;
-		$("#vrednostITM").text(Math.round((teza/(visina*visina))));
+		itm = Math.round((teza/(visina*visina)));
+		$("#vrednostITM").text(itm);
+		grafZaITM();
 		if((Math.round((teza/(visina*visina))))>= 25)
 			naloziNasvet(Nasveti.debelost);
 		else if((Math.round((teza/(visina*visina))))<= 18)
@@ -293,7 +296,7 @@ function izpisZadnjeMerTlak () {
 					else if(res[0].diastolic > 90)
 						naloziNasvet(Nasveti.visokTlak);
 				}
-				//grafZaTlak();
+				grafZaTlak();
 			}
 			else{
 				$("#vrednostPritisk").text("/");
@@ -333,6 +336,10 @@ function grafZaVisino() {
 			console.log(JSON.parse(err.responseText).userMessage);
 	    }
 	});	
+}
+function grafZaITM(){
+
+	grafITM(itm);
 }
 function grafZaTemp() {
 	sessionId = getSessionId();	
@@ -554,23 +561,6 @@ $(document).ready(function() {
 	EHRIDUser = tab[1];
 	//console.log(EHRIDUser);
 	sessionId = getSessionId();	
-	grafZaTezo();
-	grafZaVisino();
-	grafZaTemp();
-	grafZaPuls();
-	grafZaTlak();
-	/*
-	naloziNasvet(Nasveti.debelost);
-	naloziNasvet(Nasveti.podhranjenost);
-	naloziNasvet(Nasveti.vrocina);
-	naloziNasvet(Nasveti.podhladitev);
-	naloziNasvet(Nasveti.nizekUtrip);
-	naloziNasvet(Nasveti.visokUtrip);
-	naloziNasvet(Nasveti.nizekTlak);
-	naloziNasvet(Nasveti.visokTlak);
-	$("#nasvetiTekst").text("");*/
-
-	
 
 	$.ajax({
 		url: baseUrl + "/demographics/ehr/" + EHRIDUser + "/party",
@@ -591,4 +581,26 @@ $(document).ready(function() {
 			console.log("EHR ID ne obstaja");
 		}
 	})
+
+	/*
+	if($("#vrednostTeza")!="/")
+		grafZaTezo();
+	if($("#vrednostVisina")!="/")
+		grafZaVisino();
+	if($("#vrednostTemp")!="/")
+		grafZaTemp();
+	if($("#vrednostUtrip")!="/")
+		grafZaPuls();
+	if($("#vrednostPritisk")!="/")
+		grafZaTlak();*/
+	/*
+	naloziNasvet(Nasveti.debelost);
+	naloziNasvet(Nasveti.podhranjenost);
+	naloziNasvet(Nasveti.vrocina);
+	naloziNasvet(Nasveti.podhladitev);
+	naloziNasvet(Nasveti.nizekUtrip);
+	naloziNasvet(Nasveti.visokUtrip);
+	naloziNasvet(Nasveti.nizekTlak);
+	naloziNasvet(Nasveti.visokTlak);
+	$("#nasvetiTekst").text("");*/
 });
