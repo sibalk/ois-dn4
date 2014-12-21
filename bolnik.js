@@ -49,6 +49,67 @@ function urediUporabnika(){
 		}
 	});
 }
+function generirajMeritve(){
+	sessionId = getSessionId();
+	var time = new Date();
+	time = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+"T"+time.getHours()+":"+time.getMinutes();
+	var visina;
+	var teza;
+	var temp;
+	var utrip;
+	var sisTlak;
+	var diaTlak;
+	for(var i = 0; i < 50; i++){
+		console.log(i);
+		visina = Math.floor(Math.random() * (240 - 100 + 1)) + 100;
+		teza = Math.floor(Math.random() * (180 - 40 + 1)) + 40;
+		temp = Math.floor(Math.random() * (45 - 15 + 1)) + 15;
+		utrip = Math.floor(Math.random() * (130 - 40 + 1)) + 40;
+		sisTlak = Math.floor(Math.random() * (180 - 60 + 1)) + 60;
+		diaTlak = Math.floor(Math.random() * (120 - 40 + 1)) + 40;
+
+		$.ajaxSetup({
+		    headers: {"Ehr-Session": sessionId}
+		});
+		var podatki = {
+		    "ctx/language": "en",
+		    "ctx/territory": "SI",
+		    "ctx/time": time,
+		    "vital_signs/height_length/any_event/body_height_length": visina,
+		    "vital_signs/body_weight/any_event/body_weight": teza,
+		   	"vital_signs/body_temperature/any_event/temperature|magnitude": temp,
+		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
+		    "vital_signs/blood_pressure/any_event/systolic": sisTlak,
+		    "vital_signs/blood_pressure/any_event/diastolic": diaTlak,
+		    "vital_signs/pulse/any_event/rate": utrip 
+		};
+		var parametriZahteve = {
+		    "ehrId": EHRIDUser,
+		    templateId: 'Vital Signs',
+		    format: 'FLAT'
+		};
+		$.ajax({
+		    url: baseUrl + "/composition?" + $.param(parametriZahteve),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify(podatki),
+		    success: function (res) {
+		    	//console.log(res.meta.href);
+		        //$("#dodajSporocilo").text("Uspešen vnos podatkov");
+		        $("#nasvetiTekst").text("");
+		    },
+		    error: function(err) {
+		    	//$("#dodajSporocilo").text("Neuspešen vnos podatkov");
+				console.log(JSON.parse(err.responseText).userMessage);
+		    }
+		});
+	}
+	$("#dodajSporocilo").text("Uspešen vnos podatkov");
+    izpisZadnjeMerTeza();
+	izpisZadnjeMerTemp();
+	izpisZadnjeMerUtrip();
+	izpisZadnjeMerTlak();
+}
 function dodajMeritve() {
 	sessionId = getSessionId();
 	var time = new Date();
@@ -212,25 +273,25 @@ function izpisZadnjeMerTlak () {
 		success: function (res){
 			if(res.length > 0){
 				if(res[0].diastolic && res[0].systolic){
-					$("#vrednostPritisk").text(res[0].systolic+"/"+res[0].diastolic);/*
+					$("#vrednostPritisk").text(res[0].systolic+"/"+res[0].diastolic);
 					if(res[0].diastolic < 60 || res[0].systolic < 90)
 						naloziNasvet(Nasveti.nizekTlak);
-					else if(res[0].diastolic 90 >  && res[0].systolic > 140)
-						naloziNasvet(Nasveti.visokTlak);*/
+					else if(res[0].diastolic > 90 || res[0].systolic > 140)
+						naloziNasvet(Nasveti.visokTlak);
 				}
 				else if(res[0].systolic){
-					$("#vrednostPritisk").text(res[0].systolic);/*
+					$("#vrednostPritisk").text(res[0].systolic);
 					if(res[0].systolic < 90)
 						naloziNasvet(Nasveti.nizekTlak);
 					else if(res[0].systolic > 140)
-						naloziNasvet(Nasveti.visokTlak);*/
+						naloziNasvet(Nasveti.visokTlak);
 				}
 				else{
-					$("#vrednostPritisk").text(res[0].diastolic);/*
+					$("#vrednostPritisk").text(res[0].diastolic);
 					if(res[0].diastolic < 60)
 						naloziNasvet(Nasveti.nizekTlak);
 					else if(res[0].diastolic > 90)
-						naloziNasvet(Nasveti.visokTlak);*/
+						naloziNasvet(Nasveti.visokTlak);
 				}
 				//grafZaTlak();
 			}
@@ -245,6 +306,7 @@ function izpisZadnjeMerTlak () {
 }
 function grafZaTezo() {
 	sessionId = getSessionId();	
+	$("#narisiGrafTeza").text("");
 	$.ajax({
 	    url: baseUrl + "/view/" + EHRIDUser + "/" + "weight",
 	    type: 'GET',
@@ -259,6 +321,7 @@ function grafZaTezo() {
 }
 function grafZaVisino() {
 	sessionId = getSessionId();	
+	$("#narisiGrafVisina").text("");
 	$.ajax({
 	    url: baseUrl + "/view/" + EHRIDUser + "/" + "height",
 	    type: 'GET',
@@ -273,6 +336,7 @@ function grafZaVisino() {
 }
 function grafZaTemp() {
 	sessionId = getSessionId();	
+	$("#narisiGrafTemp").text("");
 	$.ajax({
 	    url: baseUrl + "/view/" + EHRIDUser + "/" + "body_temperature",
 	    type: 'GET',
@@ -287,6 +351,7 @@ function grafZaTemp() {
 }
 function grafZaTlak() {
 	sessionId = getSessionId();	
+	$("#narisiGrafTlak").text("");
 	$.ajax({
 	    url: baseUrl + "/view/" + EHRIDUser + "/" + "blood_pressure",
 	    type: 'GET',
@@ -306,7 +371,7 @@ function narisiQR(){
 
 function grafZaPuls () {
 	sessionId = getSessionId();	
-
+	$("#narisiGrafUtrip").text("");
 	var AQL = 
 	"select a_a/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/magnitude as Rate_magnitude from EHR e[e/ehr_id/value='"+ EHRIDUser+"'] contains OBSERVATION a_a[openEHR-EHR-OBSERVATION.heart_rate-pulse.v1] offset 0 limit 10";
 		$.ajax({

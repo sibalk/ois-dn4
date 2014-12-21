@@ -4,7 +4,10 @@ function grafDia(rowData) {
 
   lineDataDia = [];
   for(var i=0; i<rowData.length; i++){
-    lineDataDia.push({'x':i, 'y':rowData[i].diastolic});
+    if(rowData[i].diastolic)
+      lineDataDia.push({'x':i, 'y':rowData[i].diastolic});
+    else
+      lineDataDia.push({'x':i, 'y': 0});
   }
   var vis = d3.select("#narisiGrafTlak"),
     WIDTH = $("#graf-tlak").width()-40,

@@ -4,7 +4,10 @@ function grafSis(rowData) {
 
   lineDataSis = [];
   for(var i=0; i<rowData.length; i++){
-    lineDataSis.push({'x':i, 'y':rowData[i].systolic});
+    if(rowData[i].systolic)
+      lineDataSis.push({'x':i, 'y':rowData[i].systolic});
+    else
+      lineDataSis.push({'x':i, 'y': 0});
   }
   var vis = d3.select("#narisiGrafTlak"),
     WIDTH = $("#graf-tlak").width()-40,
