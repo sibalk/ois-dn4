@@ -60,6 +60,7 @@ function kreirajEHRzaBolnika() {
 }
 function preusmeri () {
 	var EHRID = $("#EHRID").val();
+	if(!EHRID){ alert("EHRID ni vpisan!"); return;}
 	window.location.href = "bolnik.html" + "?ehrid=" + EHRID;
 }
 function preusmeri1 () {
