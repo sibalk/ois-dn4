@@ -23,7 +23,7 @@ function grafUtrip(rowData) {
       })
     ]),
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([45, 150]),
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([30, 150]),
 
 
     yAxis = d3.svg.axis()

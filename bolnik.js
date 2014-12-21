@@ -542,8 +542,9 @@ function izpisiVitalneZnake(){
 			}
 		});
 	}
-
-	
+}
+function izpisiVitalneZnakePocisti(){
+	$("#rezultatMeritveVitalnihZnakov").text("");
 }
 $(document).ready(function() {
 

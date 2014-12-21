@@ -63,11 +63,11 @@ function preusmeri () {
 	window.location.href = "bolnik.html" + "?ehrid=" + EHRID;
 }
 function preusmeri1 () {
-	window.location.href = "bolnik.html" + "?ehrid=b931580f-2b05-488b-985b-8d9ffb08ad02";
+	window.location.href = "bolnik.html" + "?ehrid=942d97ff-a00e-4178-812d-b430fdb5e89d";
 }
 function preusmeri2 () {
-	window.location.href = "bolnik.html" + "?ehrid=254f791d-2e7c-49d9-b646-376f62d6ead5";
+	window.location.href = "bolnik.html" + "?ehrid=3c849067-d9b6-4bf8-aff1-4442c3f725d2";
 }
 function preusmeri3 () {
-	window.location.href = "bolnik.html" + "?ehrid=d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd";
+	window.location.href = "bolnik.html" + "?ehrid=85107520-6ee4-4bec-9ed9-277fc2d6d6ba";
 }
