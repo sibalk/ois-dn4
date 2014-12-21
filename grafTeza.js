@@ -48,7 +48,7 @@ function grafTeza(rowData) {
   .interpolate('cardinal');
 
 vis.append("svg:path")
-  .attr("stroke", "#FD9720")
+  .attr("stroke", "#00EB5E")
   .attr("stroke-width", 2)
   .attr("fill", "none")
   .transition()
@@ -70,7 +70,7 @@ vis.append("svg:path")
       .attr("value", lineDataTeza[i].y)
       .attr("opacity", 1)
       .attr("fill", "#9dcfa1")
-      .attr("stroke", "#FD9720")
+      .attr("stroke", "#00EB5E")
       .attr("stroke-width", 2)
       .on("mouseenter", function(){
         d3.select(this)

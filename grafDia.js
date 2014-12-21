@@ -51,7 +51,7 @@ function grafDia(rowData) {
   .interpolate('cardinal');
 
 vis.append("svg:path")
-  .attr("stroke", "#FD9720")
+  .attr("stroke", "#4F49FF")
   .attr("stroke-width", 2)
   .attr("fill", "none")
   .transition()
@@ -73,7 +73,7 @@ vis.append("svg:path")
       .attr("value", lineDataDia[i].y)
       .attr("opacity", 1)
       .attr("fill", "#9dcfa1")
-      .attr("stroke", "#FD9720")
+      .attr("stroke", "#4F49FF")
       .attr("stroke-width", 2)
       .on("mouseenter", function(){
         d3.select(this)
